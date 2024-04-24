@@ -8,9 +8,11 @@ In general this setup should work with any recent firmware version using kernel 
 
 
 ### Random notes
-This setup is pretty sketch. The file `/arm64/overlays/my_main.dts` is our custom overlay. Read the comments in it.
+This setup is pretty sketch. The file `/arm64/overlays/my_main.dts` is the main custom overlay. Read the comments in it.
 The overlay `/arm64/overlays/my_pwm.dts` does not work. It should but does not, and is thus not used. In the
-future `my_pwm.dts` should be figured out. For rn, PWM is setup from `my_main.dts`, and it depends on ecap stuff.
+future `my_pwm.dts` should be figured out. For rn, PWM is setup from `my_main.dts`, and it depends on ecap stuff. The
+overlays in this repo depend on random custom edits in the main device tree. This whole setup is derived from a setup that
+https://github.com/gitklindsayjr put together for his PRU work.
 
 
 The `show-pins.pl` script in this repo is greatly useful for checking pin muxing status.
