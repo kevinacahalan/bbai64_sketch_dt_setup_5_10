@@ -1,0 +1,28 @@
+// SPDX-License-Identifier: GPL-2.0
+/*
+ * Copyright (C) 2022 BeagleBoard.org - https://beagleboard.org/
+ */
+
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/pinctrl/k3.h>
+#include <dt-bindings/board/k3-j721e-bone-pins.h>
+#include <dt-bindings/soc/ti,sci_pm_domain.h>
+
+/*
+ * Helper to show loaded overlays under: /proc/device-tree/chosen/overlays/
+ */
+&{/chosen} {
+	overlays {
+		my_pwm4.kernel = __TIMESTAMP__;
+	};
+};
+
+&bone_pwm_4 {
+    pinctrl-names = "default";
+	pinctrl-0 = <
+		&P9_25_pwm_pin
+	>;
+	status = "okay";
+};
