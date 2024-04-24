@@ -6,6 +6,10 @@ should take care of compile and install. You may then need to power cycle the bo
 This device tree setup was tested with BeagleboneAI64 firmware bbai64-debian-12.2-minimal-arm64-2023-10-07-6gb.img.xz.
 In general this setup should work with any recent firmware version using kernel 5.10. 
 
+### What's working and tested (from an R5 core)
+- GPIO
+- SPI 6 and 7
+- EPWM4 which is on pin P9-25
 
 ### Random notes
 This setup is pretty sketch. The file `/arm64/overlays/my_main.dts` is the main custom overlay. Read the comments in it.
