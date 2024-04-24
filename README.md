@@ -10,6 +10,7 @@ In general this setup should work with any recent firmware version using kernel 
 - GPIO
 - SPI 6 and 7
 - EPWM4 which is on pin P9-25
+- 16MB of memory shared with linux at address 0x90000000
 
 ### Random notes
 This setup is pretty sketch. The file `/arm64/overlays/my_main.dts` is the main custom overlay. Read the comments in it.
