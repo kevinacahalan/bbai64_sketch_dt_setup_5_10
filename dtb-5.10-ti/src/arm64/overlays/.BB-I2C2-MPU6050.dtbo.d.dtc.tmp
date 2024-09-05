@@ -1,0 +1,1 @@
+src/arm64/overlays/BB-I2C2-MPU6050.dtbo: src/arm64/overlays/.BB-I2C2-MPU6050.dtbo.dts.tmp

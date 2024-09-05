@@ -1,0 +1,4 @@
+cmd_src/arm64/overlays/BONE-FAN.dtbo = cpp -Wp,-MD,src/arm64/overlays/.BONE-FAN.dtbo.d.pre.tmp -nostdinc -Iinclude -Isrc/arm64 -Isrc -Itestcase-data -undef -D__DTS__ -x assembler-with-cpp -o src/arm64/overlays/.BONE-FAN.dtbo.dts.tmp src/arm64/overlays/BONE-FAN.dts ; dtc -O dtb -o src/arm64/overlays/BONE-FAN.dtbo -b 0 -@ -i src/arm64 -Wno-unit_address_vs_reg -Wno-pci_bridge -Wno-simple_bus_reg -Wno-avoid_unnecessary_addr_size -Wno-alias_paths -Wno-unique_unit_address -Wno-avoid_default_addr_size -Wno-interrupt_provider -d src/arm64/overlays/.BONE-FAN.dtbo.d.dtc.tmp src/arm64/overlays/.BONE-FAN.dtbo.dts.tmp ; cat src/arm64/overlays/.BONE-FAN.dtbo.d.pre.tmp src/arm64/overlays/.BONE-FAN.dtbo.d.dtc.tmp > src/arm64/overlays/.BONE-FAN.dtbo.d
+BONE-FAN.o: src/arm64/overlays/BONE-FAN.dts \
+ include/dt-bindings/pinctrl/k3.h
+src/arm64/overlays/BONE-FAN.dtbo: src/arm64/overlays/.BONE-FAN.dtbo.dts.tmp

@@ -1,0 +1,1 @@
+BONE-LED_P8_03.o: src/arm64/overlays/BONE-LED_P8_03.dts

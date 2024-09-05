@@ -1,0 +1,1 @@
+src/arm64/overlays/BONE-SPI1_0.dtbo: src/arm64/overlays/.BONE-SPI1_0.dtbo.dts.tmp

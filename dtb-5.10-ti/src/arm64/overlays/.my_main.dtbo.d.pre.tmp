@@ -1,0 +1,7 @@
+my_main.o: src/arm64/overlays/my_main.dts include/dt-bindings/gpio/gpio.h \
+ include/dt-bindings/interrupt-controller/arm-gic.h \
+ include/dt-bindings/interrupt-controller/irq.h \
+ include/dt-bindings/pinctrl/k3.h \
+ include/dt-bindings/board/k3-j721e-bone-pins.h \
+ include/dt-bindings/soc/ti,sci_pm_domain.h \
+ include/dt-bindings/input/linux-event-codes.h

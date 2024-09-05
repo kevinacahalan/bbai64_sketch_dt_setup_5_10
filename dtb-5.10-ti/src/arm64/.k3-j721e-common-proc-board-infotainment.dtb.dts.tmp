@@ -1,0 +1,181 @@
+# 0 "src/arm64/k3-j721e-common-proc-board-infotainment.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/k3-j721e-common-proc-board-infotainment.dts"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "include/dt-bindings/gpio/gpio.h" 1
+# 12 "src/arm64/k3-j721e-common-proc-board-infotainment.dts" 2
+# 1 "include/dt-bindings/interrupt-controller/irq.h" 1
+# 13 "src/arm64/k3-j721e-common-proc-board-infotainment.dts" 2
+# 1 "include/dt-bindings/pinctrl/k3.h" 1
+# 14 "src/arm64/k3-j721e-common-proc-board-infotainment.dts" 2
+
+/ {
+ fragment@101 {
+  target-path = "/";
+
+  __overlay__ {
+   hdmi-connector {
+    compatible = "hdmi-connector";
+    label = "hdmi";
+    type = "a";
+
+    ddc-i2c-bus = <&main_i2c1>;
+    digital;
+
+
+    hpd-gpios = <&vout_exp 10 0>;
+
+    port {
+     hdmi_connector_in: endpoint {
+      remote-endpoint = <&tfp410_out>;
+     };
+    };
+   };
+
+   dvi-bridge {
+    #address-cells = <1>;
+    #size-cells = <0>;
+    compatible = "ti,tfp410";
+
+
+    powerdown-gpios = <&vout_exp 8 1>;
+
+    port@0 {
+     reg = <0>;
+
+     tfp410_in: endpoint {
+      remote-endpoint = <&dpi_out0>;
+      pclk-sample = <1>;
+     };
+    };
+
+    port@1 {
+     reg = <1>;
+
+     tfp410_out: endpoint {
+      remote-endpoint =
+       <&hdmi_connector_in>;
+     };
+    };
+   };
+  };
+ };
+};
+
+&main_pmx0 {
+ main_i2c1_vout_exp_pins_default: main-i2c1-vout-exp-pins-default {
+  pinctrl-single,pins = <
+   (((0x264) & 0x1fff)) ((((1 << (18)) | (1 << (16)))) | (7))
+  >;
+ };
+
+ dss_vout0_pins_default: dss-vout0-pins-default {
+  pinctrl-single,pins = <
+   (((0x58) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x5c) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x60) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x64) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x68) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x6c) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x70) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x74) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x78) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x7c) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x80) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x84) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x88) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x8c) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x90) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x94) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x30) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x34) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x38) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x3c) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x40) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x44) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x24) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x28) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x9c) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0x98) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0xa4) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+   (((0xa0) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (10))
+  >;
+ };
+};
+
+&main_i2c1 {
+
+ clock-frequency = <100000>;
+
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ vout_exp: gpio@21 {
+  compatible = "ti,tca6416";
+  reg = <0x21>;
+  gpio-controller;
+  #gpio-cells = <2>;
+  pinctrl-names = "default";
+  pinctrl-0 = <&main_i2c1_vout_exp_pins_default>;
+  interrupt-parent = <&main_gpio1>;
+  interrupts = <24 2>;
+  interrupt-controller;
+  #interrupt-cells = <2>;
+ };
+};
+
+&vout_exp {
+ p11 {
+
+  gpio-hog;
+  gpios = <9 0>;
+  output-high;
+  line-name = "HDMI_DDC_OE";
+ };
+};
+
+&exp1 {
+ p14 {
+
+  gpio-hog;
+  gpios = <12 0>;
+  output-low;
+  line-name = "VINOUT_MUX_SEL0";
+ };
+
+ p15 {
+
+  gpio-hog;
+  gpios = <13 0>;
+  output-high;
+  line-name = "VINOUT_MUX_SEL1";
+ };
+};
+
+&dss {
+ pinctrl-names = "default";
+ pinctrl-0 = <&dss_vout0_pins_default>;
+};
+
+&dss_ports {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ port@1 {
+  reg = <1>;
+
+  dpi_out0: endpoint {
+   remote-endpoint = <&tfp410_in>;
+  };
+ };
+};

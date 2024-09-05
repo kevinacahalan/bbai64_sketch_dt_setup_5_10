@@ -1,0 +1,19 @@
+# 0 "src/arm64/overlays/k3-am625-beagleplay-bcfserial-no-firmware.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/overlays/k3-am625-beagleplay-bcfserial-no-firmware.dts"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+&main_uart6 {
+ bcfserial {
+  status = "disabled";
+ };
+};

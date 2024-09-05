@@ -1,0 +1,55 @@
+# 0 "src/arm64/overlays/BBORG_SERVO-00A2.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/overlays/BBORG_SERVO-00A2.dts"
+# 10 "src/arm64/overlays/BBORG_SERVO-00A2.dts"
+/dts-v1/;
+/plugin/;
+
+
+
+
+&{/chosen} {
+ overlays {
+  BBORG_SERVO-00A2 = "Tue Mar 26 15:40:53 2024";
+ };
+};
+
+
+
+
+&ocp {
+    P8_12_pinmux { pinctrl-0 = <&P8_12_gpio_pd_pin>; };
+    P8_11_pinmux { pinctrl-0 = <&P8_11_gpio_pd_pin>; };
+    P9_30_pinmux { pinctrl-0 = <&P9_30_gpio_pd_pin>; };
+    P9_27_pinmux { pinctrl-0 = <&P9_27_gpio_pd_pin>; };
+    P9_41_pinmux { pinctrl-0 = <&P9_41_gpio_pd_pin>; };
+    P9_42_pinmux { pinctrl-0 = <&P9_42_gpio_pd_pin>; };
+
+    P9_19_pinmux { pinctrl-0 = <&P9_19_i2c_pin>; };
+    P9_20_pinmux { pinctrl-0 = <&P9_20_i2c_pin>; };
+    P8_10_pinmux { pinctrl-0 = <&P8_10_gpio_pin>; };
+};
+
+
+
+
+&bone_i2c_2 {
+    status = "okay";
+    pca: pca@70 {
+        compatible = "nxp,pca9685-pwm";
+        #pwm-cells = <2>;
+        reg = <0x70>;
+        label = "pca9685_servo";
+
+
+    };
+};
+
+&bone_led_P8_10 {
+    status = "okay";
+    label = "pca9685-enable";
+
+
+    default-state = "off";
+};

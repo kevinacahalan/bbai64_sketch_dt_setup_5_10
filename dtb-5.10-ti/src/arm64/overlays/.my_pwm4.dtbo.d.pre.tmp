@@ -1,0 +1,4 @@
+my_pwm4.o: src/arm64/overlays/my_pwm4.dts \
+ include/dt-bindings/pinctrl/k3.h \
+ include/dt-bindings/board/k3-j721e-bone-pins.h \
+ include/dt-bindings/soc/ti,sci_pm_domain.h

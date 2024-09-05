@@ -1,0 +1,1 @@
+BONE-SPI0_1.o: src/arm64/overlays/BONE-SPI0_1.dts

@@ -1,0 +1,155 @@
+# 0 "src/arm64/k3-j721e-sk-rpi-cam-imx219.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/k3-j721e-sk-rpi-cam-imx219.dts"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "include/dt-bindings/gpio/gpio.h" 1
+# 12 "src/arm64/k3-j721e-sk-rpi-cam-imx219.dts" 2
+# 1 "include/dt-bindings/interrupt-controller/irq.h" 1
+# 13 "src/arm64/k3-j721e-sk-rpi-cam-imx219.dts" 2
+# 1 "include/dt-bindings/pinctrl/k3.h" 1
+# 14 "src/arm64/k3-j721e-sk-rpi-cam-imx219.dts" 2
+
+/ {
+ fragment@101 {
+  target-path = "/";
+
+  __overlay__ {
+   clk_imx219_fixed: imx219-xclk {
+    compatible = "fixed-clock";
+    #clock-cells = <0>;
+    clock-frequency = <24000000>;
+   };
+  };
+ };
+};
+
+&main_pmx0 {
+ main_rpi_cam0_reset_pins_default: main-rpi-cam0-reset-pins-default {
+  pinctrl-single,pins = <
+   (((0x1D4) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (7))
+  >;
+ };
+
+ main_rpi_cam1_reset_pins_default: main-rpi-cam1-reset-pins-default {
+  pinctrl-single,pins = <
+   (((0x1E0) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (7))
+  >;
+ };
+
+ main_csi_mux_sel2_pins_default: main-csi-mux-sel2-pins-default {
+  pinctrl-single,pins = <
+   (((0x164) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (7))
+  >;
+ };
+};
+
+&main_gpio0 {
+ csi-mux-hog {
+
+  gpio-hog;
+  gpios = <88 0>;
+  output-high;
+  line-name = "CSI_MUX_SEL_2";
+ };
+};
+
+&main_i2c3 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ i2c-switch@70 {
+  compatible = "nxp,pca9543";
+  #address-cells = <1>;
+  #size-cells = <0>;
+  reg = <0x70>;
+
+  pinctrl-names = "default";
+  pinctrl-0 = <&main_csi_mux_sel2_pins_default>;
+
+  i2c-alias-pool = /bits/ 16 <0x10 0x11>;
+
+
+  cam0_i2c: i2c@0 {
+   #address-cells = <1>;
+   #size-cells = <0>;
+   reg = <0>;
+
+   imx219_0: imx219_0@10 {
+    compatible = "sony,imx219";
+    reg = <0x10>;
+
+    clocks = <&clk_imx219_fixed>;
+    clock-names = "xclk";
+
+    pinctrl-names = "default";
+    pinctrl-0 = <&main_rpi_cam0_reset_pins_default>;
+    reset-gpios = <&main_gpio0 116 0>;
+
+    port {
+     csi2_cam0: endpoint {
+      remote-endpoint = <&csi2rx0_in_sensor>;
+      link-frequencies = /bits/ 64 <456000000>;
+      clock-lanes = <0>;
+      data-lanes = <1 2>;
+     };
+    };
+   };
+  };
+
+
+  cam1_i2c: i2c@1 {
+   #address-cells = <1>;
+   #size-cells = <0>;
+   reg = <1>;
+
+   imx219_1: imx219_1@10 {
+    compatible = "sony,imx219";
+    reg = <0x10>;
+
+    clocks = <&clk_imx219_fixed>;
+    clock-names = "xclk";
+
+    pinctrl-names = "default";
+    pinctrl-0 = <&main_rpi_cam1_reset_pins_default>;
+    reset-gpios = <&main_gpio0 119 0>;
+
+    port {
+     csi2_cam1: endpoint {
+      remote-endpoint = <&csi2rx1_in_sensor>;
+      link-frequencies = /bits/ 64 <456000000>;
+      clock-lanes = <0>;
+      data-lanes = <1 2>;
+     };
+    };
+   };
+  };
+ };
+};
+
+&csi0_port0 {
+ csi2rx0_in_sensor: endpoint {
+  remote-endpoint = <&csi2_cam0>;
+  bus-type = <4>;
+  clock-lanes = <0>;
+  data-lanes = <1 2>;
+ };
+};
+
+&csi1_port0 {
+ csi2rx1_in_sensor: endpoint {
+  remote-endpoint = <&csi2_cam1>;
+  bus-type = <4>;
+  clock-lanes = <0>;
+  data-lanes = <1 2>;
+ };
+};

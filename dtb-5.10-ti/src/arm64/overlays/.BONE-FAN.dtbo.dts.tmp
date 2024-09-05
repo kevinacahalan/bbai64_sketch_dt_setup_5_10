@@ -1,0 +1,144 @@
+# 0 "src/arm64/overlays/BONE-FAN.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/overlays/BONE-FAN.dts"
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "include/dt-bindings/pinctrl/k3.h" 1
+# 10 "src/arm64/overlays/BONE-FAN.dts" 2
+
+
+
+
+&{/chosen} {
+ overlays {
+  BONE-FAN = "Tue Mar 26 15:40:53 2024";
+ };
+};
+
+&ehrpwm3_pins_default{
+ pinctrl-single,pins = <
+  (((0x18c) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (6))
+  (((0x190) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (6))
+  (((0x194) & 0x1fff)) ((((1 << (18)) | (1 << (17) | (0 << (16))))) | (7))
+ >;
+};
+
+&main_ehrpwm3 {
+ pinctrl-names = "default";
+ pinctrl-0 = <&ehrpwm3_pins_default>;
+ status = "okay";
+};
+
+&{/} {
+ fan0: pwm-fan {
+  compatible = "pwm-fan";
+  #cooling-cells = <2>;
+  pwms = <&main_ehrpwm3 1 40000 0>;
+  cooling-levels = <100 140 180 220 254>;
+  interrupt-parent = <&main_gpio0>;
+  interrupts = <100 1>;
+  pulses-per-revolution = <2>;
+ };
+};
+
+&thermal_zones{
+ wkup_thermal: wkup-thermal {
+  trips {
+   wkup_active1: wkup-active1 {
+    temperature = <35000>;
+    hysteresis = <2000>;
+    type = "active";
+   };
+   wkup_active2: wkup-active2 {
+    temperature = <42000>;
+    hysteresis = <2000>;
+    type = "active";
+   };
+   wkup_active3: wkup-active3 {
+    temperature = <50000>;
+    hysteresis = <2000>;
+    type = "active";
+   };
+   wkup_hot: wkup-hot {
+    temperature = <72000>;
+    hysteresis = <2000>;
+    type = "hot";
+   };
+   wkup_crit: wkup-crit {
+    temperature = <125000>;
+    hysteresis = <2000>;
+    type = "critical";
+   };
+  };
+
+  cooling-maps {
+   map0 {
+    trip = <&wkup_active1>;
+    cooling-device = <&fan0 0 0>;
+   };
+   map2 {
+    trip = <&wkup_active2>;
+    cooling-device = <&fan0 0 1>;
+   };
+   map3 {
+    trip = <&wkup_active3>;
+    cooling-device = <&fan0 0 2>;
+   };
+   map4 {
+    trip = <&wkup_hot>;
+    cooling-device = <&fan0 0 3>;
+   };
+   map5 {
+    trip = <&wkup_crit>;
+    cooling-device = <&fan0 0 4>;
+   };
+  };
+ };
+
+ mpu_thermal: mpu-thermal {
+  trips {
+   mpu_crit: mpu-crit {
+    temperature = <125000>;
+    hysteresis = <2000>;
+    type = "critical";
+   };
+  };
+ };
+
+ c7x_thermal: c7x-thermal {
+  trips {
+   c7x_crit: c7x-crit {
+    temperature = <125000>;
+    hysteresis = <2000>;
+    type = "critical";
+   };
+  };
+ };
+
+ gpu_thermal: gpu-thermal {
+  trips {
+   gpu_crit: gpu-crit {
+    temperature = <125000>;
+    hysteresis = <2000>;
+    type = "critical";
+   };
+  };
+ };
+
+ r5f_thermal: r5f-thermal {
+  trips {
+   r5f_crit: r5f-crit {
+    temperature = <125000>;
+    hysteresis = <2000>;
+    type = "critical";
+   };
+  };
+ };
+};

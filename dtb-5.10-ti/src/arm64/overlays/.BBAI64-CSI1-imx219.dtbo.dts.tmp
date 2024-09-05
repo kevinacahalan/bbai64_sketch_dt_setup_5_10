@@ -1,0 +1,90 @@
+# 0 "src/arm64/overlays/BBAI64-CSI1-imx219.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/overlays/BBAI64-CSI1-imx219.dts"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "include/dt-bindings/gpio/gpio.h" 1
+# 12 "src/arm64/overlays/BBAI64-CSI1-imx219.dts" 2
+# 1 "include/dt-bindings/interrupt-controller/irq.h" 1
+# 13 "src/arm64/overlays/BBAI64-CSI1-imx219.dts" 2
+# 1 "include/dt-bindings/pinctrl/k3.h" 1
+# 14 "src/arm64/overlays/BBAI64-CSI1-imx219.dts" 2
+# 30 "src/arm64/overlays/BBAI64-CSI1-imx219.dts"
+&{/chosen} {
+ overlays {
+  BBAI64-CSI1-imx219.kernel = "Tue Mar 26 15:40:53 2024";
+ };
+};
+
+/ {
+ fragment@101 {
+  target-path = "/";
+
+  __overlay__ {
+   clk_csi1_imx219_fixed: csi1-imx219-xclk {
+    compatible = "fixed-clock";
+    #clock-cells = <0>;
+    clock-frequency = <24000000>;
+   };
+  };
+ };
+};
+
+&main_pmx0 {
+ csi1_gpio_pins_default: csi1-gpio-pins-default {
+  pinctrl-single,pins = <
+
+   (((0x1b0) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (7))
+  >;
+ };
+};
+
+&main_i2c1 {
+ clock-frequency = <400000>;
+ status = "okay";
+
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ csi1_imx219: csi1_sensor@10 {
+  status = "okay";
+  compatible = "sony,imx219";
+  reg = <0x10>;
+
+  clocks = <&clk_csi1_imx219_fixed>;
+  clock-names = "xclk";
+
+  pinctrl-names = "default";
+  pinctrl-0 = <&csi1_gpio_pins_default>;
+
+  reset-gpios = <&main_gpio0 107 0>;
+
+  port {
+   csi2rx1_cam0: endpoint {
+    remote-endpoint = <&csi2rx1_in_sensor>;
+    link-frequencies = /bits/ 64 <456000000>;
+    clock-lanes = <0>;
+    data-lanes = <1 2>;
+   };
+  };
+ };
+};
+
+&csi1_port0 {
+ status = "okay";
+ csi2rx1_in_sensor: endpoint {
+  remote-endpoint = <&csi2rx1_cam0>;
+  bus-type = <4>;
+  clock-lanes = <0>;
+  data-lanes = <1 2>;
+ };
+};

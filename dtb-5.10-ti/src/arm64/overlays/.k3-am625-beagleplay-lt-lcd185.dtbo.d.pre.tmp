@@ -1,0 +1,4 @@
+k3-am625-beagleplay-lt-lcd185.o: \
+ src/arm64/overlays/k3-am625-beagleplay-lt-lcd185.dts \
+ include/dt-bindings/gpio/gpio.h \
+ include/dt-bindings/interrupt-controller/irq.h

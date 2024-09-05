@@ -1,0 +1,149 @@
+# 0 "src/arm64/overlays/BBAI64-DSI-RPi-7inch-panel.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/overlays/BBAI64-DSI-RPi-7inch-panel.dts"
+# 9 "src/arm64/overlays/BBAI64-DSI-RPi-7inch-panel.dts"
+/dts-v1/;
+/plugin/;
+
+# 1 "include/dt-bindings/gpio/gpio.h" 1
+# 13 "src/arm64/overlays/BBAI64-DSI-RPi-7inch-panel.dts" 2
+# 1 "include/dt-bindings/interrupt-controller/irq.h" 1
+# 14 "src/arm64/overlays/BBAI64-DSI-RPi-7inch-panel.dts" 2
+# 1 "include/dt-bindings/pinctrl/k3.h" 1
+# 15 "src/arm64/overlays/BBAI64-DSI-RPi-7inch-panel.dts" 2
+
+
+
+
+&{/chosen} {
+ overlays {
+  BBAI64-DSI-RPi-7inch-panel.kernel = "Tue Mar 26 15:40:53 2024";
+ };
+};
+
+/ {
+ fragment@101 {
+  target-path = "/";
+
+  __overlay__ {
+   reg_bridge: reg_bridge@0 {
+    reg = <0 0 0x0 0x0>;
+    compatible = "regulator-fixed";
+    regulator-name = "bridge_reg";
+    gpio = <&reg_display 0 0>;
+    vin-supply = <&reg_display>;
+    enable-active-high;
+   };
+
+   panel_disp0: panel_disp1@0 {
+    reg = <0 0 0x0 0x0>;
+    compatible = "raspberrypi,7inch-dsi", "simple-panel";
+    backlight = <&reg_display>;
+    power-supply = <&reg_display>;
+
+    port {
+     panel_in: endpoint {
+      remote-endpoint = <&panel_bridge_out>;
+     };
+    };
+   };
+  };
+ };
+};
+
+&main_pmx0 {
+ main_i2c4_pins_default: main-i2c-pins-default {
+  pinctrl-single,pins = <
+   (((0xa8) & 0x1fff)) ((((1 << (18)) | (1 << (17) | (0 << (16))))) | (2))
+   (((0xac) & 0x1fff)) ((((1 << (18)) | (1 << (17) | (0 << (16))))) | (2))
+  >;
+ };
+};
+
+&main_i2c4 {
+ status = "okay";
+ pinctrl-names = "default";
+ pinctrl-0 = <&main_i2c4_pins_default>;
+ clock-frequency = <400000>;
+
+ reg_display: reg_display@45 {
+  compatible = "raspberrypi,7inch-touchscreen-panel-regulator";
+  reg = <0x45>;
+  gpio-controller;
+  #gpio-cells = <2>;
+ };
+
+ ft5406: ts@38 {
+  compatible = "edt,edt-ft5406";
+  reg = <0x38>;
+
+  touchscreen-size-x = < 800 >;
+  touchscreen-size-y = < 480 >;
+
+  vcc-supply = <&reg_display>;
+  reset-gpio = <&reg_display 1 1>;
+
+  touchscreen-inverted-x;
+  touchscreen-inverted-y;
+ };
+};
+
+&dss_ports {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ port@2 {
+  reg = <2>;
+
+  dpi1_out: endpoint {
+   remote-endpoint = <&dsi0_in>;
+  };
+ };
+};
+
+&dsi0 {
+ ports {
+  #address-cells = <1>;
+  #size-cells = <0>;
+
+  port@0 {
+   reg = <0>;
+   dsi0_out: endpoint {
+    remote-endpoint = <&panel_bridge_in>;
+   };
+  };
+
+  port@1 {
+   reg = <1>;
+   dsi0_in: endpoint {
+    remote-endpoint = <&dpi1_out>;
+   };
+  };
+ };
+
+ bridge@0 {
+  compatible = "toshiba,tc358762";
+  reg = <0>;
+  vddc-supply = <&reg_bridge>;
+  ports {
+   #address-cells = <1>;
+   #size-cells = <0>;
+
+   port@0 {
+    reg = <0>;
+    panel_bridge_in: endpoint {
+     remote-endpoint = <&dsi0_out>;
+    };
+   };
+
+   port@1 {
+    reg = <1>;
+    panel_bridge_out: endpoint {
+     remote-endpoint = <&panel_in>;
+    };
+   };
+  };
+ };
+
+};

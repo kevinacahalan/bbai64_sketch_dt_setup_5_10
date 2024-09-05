@@ -1,0 +1,27 @@
+# 0 "src/arm64/overlays/BONE-UART5.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/overlays/BONE-UART5.dts"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+
+
+
+&{/chosen} {
+ overlays {
+  BONE-UART5.kernel = "Tue Mar 26 15:40:53 2024";
+ };
+};
+
+&bone_uart_5 {
+
+ status = "okay";
+};

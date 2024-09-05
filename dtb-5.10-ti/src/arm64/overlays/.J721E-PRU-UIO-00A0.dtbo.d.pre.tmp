@@ -1,0 +1,3 @@
+J721E-PRU-UIO-00A0.o: src/arm64/overlays/J721E-PRU-UIO-00A0.dts \
+ include/dt-bindings/interrupt-controller/arm-gic.h \
+ include/dt-bindings/interrupt-controller/irq.h

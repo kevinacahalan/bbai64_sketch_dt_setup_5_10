@@ -1,0 +1,96 @@
+# 0 "src/arm64/k3-j721e-sk-csi2-ov5640.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/k3-j721e-sk-csi2-ov5640.dts"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "include/dt-bindings/gpio/gpio.h" 1
+# 12 "src/arm64/k3-j721e-sk-csi2-ov5640.dts" 2
+# 1 "include/dt-bindings/interrupt-controller/irq.h" 1
+# 13 "src/arm64/k3-j721e-sk-csi2-ov5640.dts" 2
+# 1 "include/dt-bindings/pinctrl/k3.h" 1
+# 14 "src/arm64/k3-j721e-sk-csi2-ov5640.dts" 2
+
+&main_pmx0 {
+ csi2_exp_reset_pins_default: csi2-exp-reset-pins-default {
+  pinctrl-single,pins = <
+   (((0x140) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (7))
+  >;
+ };
+
+ csi2_exp_refclk_pins_default: csi2-exp-refclk-pins-default {
+  pinctrl-single,pins = <
+   (((0x1A4) & 0x1fff)) ((((0 << (18)) | (1 << (16)))) | (3))
+  >;
+ };
+};
+
+&k3_clks {
+
+ pinctrl-names = "default";
+ pinctrl-0 = <&csi2_exp_refclk_pins_default>;
+};
+
+&main_i2c3 {
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ i2c-switch@70 {
+  compatible = "nxp,pca9543";
+  #address-cells = <1>;
+  #size-cells = <0>;
+  reg = <0x70>;
+
+
+  ti_cam0_i2c: i2c@0 {
+   #address-cells = <1>;
+   #size-cells = <0>;
+   reg = <0>;
+
+   ov5640: camera@3c {
+    compatible = "ovti,ov5640";
+    reg = <0x3c>;
+
+    pinctrl-names = "default";
+    pinctrl-0 = <&csi2_exp_reset_pins_default>;
+    powerdown-gpios = <&main_gpio0 79 1>;
+
+
+    clocks = <&k3_clks 157 371>;
+    clock-names = "xclk";
+
+
+    assigned-clocks = <&k3_clks 157 371>;
+    assigned-clock-parents = <&k3_clks 157 400>;
+    assigned-clock-rates = <25000000>;
+
+    port {
+     csi2_cam0: endpoint {
+      remote-endpoint = <&csi2rx0_in_sensor>;
+      clock-lanes = <0>;
+      data-lanes = <1 2>;
+     };
+    };
+   };
+  };
+
+ };
+};
+
+&csi0_port0 {
+ csi2rx0_in_sensor: endpoint {
+  remote-endpoint = <&csi2_cam0>;
+  bus-type = <4>;
+  clock-lanes = <0>;
+  data-lanes = <1 2>;
+ };
+
+};

@@ -1,0 +1,1 @@
+BONE-UART3.o: src/arm64/overlays/BONE-UART3.dts

@@ -1,0 +1,4 @@
+BB-I2C2-MPU6050.o: src/arm64/overlays/BB-I2C2-MPU6050.dts \
+ include/dt-bindings/pinctrl/k3.h include/dt-bindings/gpio/gpio.h \
+ include/dt-bindings/interrupt-controller/irq.h \
+ include/dt-bindings/board/k3-j721e-bone-pins.h

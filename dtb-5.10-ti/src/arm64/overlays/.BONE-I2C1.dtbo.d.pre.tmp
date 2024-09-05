@@ -1,0 +1,1 @@
+BONE-I2C1.o: src/arm64/overlays/BONE-I2C1.dts

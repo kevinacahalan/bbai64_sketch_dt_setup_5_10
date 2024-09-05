@@ -1,0 +1,1 @@
+src/arm64/overlays/k3-am625-beagleplay-lt-lcd185.dtbo: src/arm64/overlays/.k3-am625-beagleplay-lt-lcd185.dtbo.dts.tmp

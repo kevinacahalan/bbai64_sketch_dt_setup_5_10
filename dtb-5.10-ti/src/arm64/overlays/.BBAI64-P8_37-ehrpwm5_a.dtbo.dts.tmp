@@ -1,0 +1,24 @@
+# 0 "src/arm64/overlays/BBAI64-P8_37-ehrpwm5_a.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/overlays/BBAI64-P8_37-ehrpwm5_a.dts"
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+
+
+
+&{/chosen} {
+ overlays {
+  BBAI64-P8_37-ehrpwm5_a.kernel = "Tue Mar 26 15:40:53 2024";
+ };
+};
+
+&main_ehrpwm5 {
+ status = "okay";
+};

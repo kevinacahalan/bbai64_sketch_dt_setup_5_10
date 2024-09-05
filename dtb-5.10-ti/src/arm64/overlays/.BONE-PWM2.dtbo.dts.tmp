@@ -1,0 +1,26 @@
+# 0 "src/arm64/overlays/BONE-PWM2.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/overlays/BONE-PWM2.dts"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+
+
+
+&{/chosen} {
+ overlays {
+  BONE-PWM2.kernel = "Tue Mar 26 15:40:53 2024";
+ };
+};
+
+&bone_pwm_2 {
+ status = "okay";
+};

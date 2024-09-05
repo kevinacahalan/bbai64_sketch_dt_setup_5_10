@@ -1,0 +1,5 @@
+k3-j721e-common-proc-board-infotainment.o: \
+ src/arm64/k3-j721e-common-proc-board-infotainment.dts \
+ include/dt-bindings/gpio/gpio.h \
+ include/dt-bindings/interrupt-controller/irq.h \
+ include/dt-bindings/pinctrl/k3.h

@@ -6,6 +6,9 @@ SCRIPT_DIR="$(dirname "$0")"
 DEVICE_TREES="$SCRIPT_DIR"
 DEST_DIR="/opt/source/dtb-5.10-ti"
 
+sudo rm -rf "$DEST_DIR/include/"
+sudo cp -rf "$DEVICE_TREES/dtb-5.10-ti/" "/opt/source/"
+
 # Install device tree stuff
 sudo rm -rf "$DEST_DIR/include/"
 sudo rm -rf "$DEST_DIR/src/arm64/"

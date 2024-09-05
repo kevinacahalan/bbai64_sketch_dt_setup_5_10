@@ -1,0 +1,2 @@
+k3-j721e-cpb-csi2-ov5640.o: src/arm64/k3-j721e-cpb-csi2-ov5640.dts \
+ include/dt-bindings/gpio/gpio.h

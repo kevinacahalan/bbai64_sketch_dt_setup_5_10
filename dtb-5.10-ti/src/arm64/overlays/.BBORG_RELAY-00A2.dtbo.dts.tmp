@@ -1,0 +1,62 @@
+# 0 "src/arm64/overlays/BBORG_RELAY-00A2.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/overlays/BBORG_RELAY-00A2.dts"
+# 12 "src/arm64/overlays/BBORG_RELAY-00A2.dts"
+/dts-v1/;
+/plugin/;
+
+
+
+
+&{/chosen} {
+ overlays {
+  BBORG_RELAY-00A2.kernel = "Tue Mar 26 15:40:53 2024";
+ };
+};
+
+
+
+
+&ocp {
+ P9_41_pinmux { pinctrl-0 = <&P9_41_gpio_pin>;};
+ P9_42_pinmux { pinctrl-0 = <&P9_42_gpio_pin>;};
+ P9_30_pinmux { pinctrl-0 = <&P9_30_gpio_pin>;};
+ P9_27_pinmux { pinctrl-0 = <&P9_27_gpio_pin>;};
+};
+
+
+
+
+
+
+&bone_led_P9_41 {
+ status = "okay";
+
+ label = "relay1";
+ default-state = "keep";
+};
+
+
+&bone_led_P9_42 {
+ status = "okay";
+
+ label = "relay2";
+ default-state = "keep";
+};
+
+
+&bone_led_P9_30 {
+ status = "okay";
+
+ label = "relay3";
+ default-state = "keep";
+};
+
+
+&bone_led_P9_27 {
+ status = "okay";
+
+ label = "relay4";
+ default-state = "keep";
+};

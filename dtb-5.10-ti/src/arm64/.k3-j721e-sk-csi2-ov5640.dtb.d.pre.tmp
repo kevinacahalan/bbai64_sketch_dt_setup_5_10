@@ -1,0 +1,4 @@
+k3-j721e-sk-csi2-ov5640.o: src/arm64/k3-j721e-sk-csi2-ov5640.dts \
+ include/dt-bindings/gpio/gpio.h \
+ include/dt-bindings/interrupt-controller/irq.h \
+ include/dt-bindings/pinctrl/k3.h

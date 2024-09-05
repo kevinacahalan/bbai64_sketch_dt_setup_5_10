@@ -1,0 +1,2 @@
+k3-am625-beagleplay-bcfserial-no-firmware.o: \
+ src/arm64/overlays/k3-am625-beagleplay-bcfserial-no-firmware.dts

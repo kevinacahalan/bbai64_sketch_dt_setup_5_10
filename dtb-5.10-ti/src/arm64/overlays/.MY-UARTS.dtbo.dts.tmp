@@ -1,0 +1,35 @@
+# 0 "src/arm64/overlays/MY-UARTS.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/overlays/MY-UARTS.dts"
+
+
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+
+
+
+&{/chosen} {
+ overlays {
+  MY-UARTS.kernel = "Tue Mar 26 15:40:53 2024";
+ };
+};
+
+&bone_uart_1 {
+
+ status = "okay";
+};
+&bone_uart_3 {
+
+ status = "okay";
+};
+&bone_uart_5 {
+
+ status = "okay";
+};

@@ -1,0 +1,1 @@
+src/arm64/overlays/k3-am625-beagleplay-csi2-ov5640.dtbo: src/arm64/overlays/.k3-am625-beagleplay-csi2-ov5640.dtbo.dts.tmp

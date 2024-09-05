@@ -1,0 +1,1 @@
+src/arm64/k3-am62x-lp-sk.dtb: src/arm64/.k3-am62x-lp-sk.dtb.dts.tmp

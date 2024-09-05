@@ -1,0 +1,2 @@
+BONE-FAN.o: src/arm64/overlays/BONE-FAN.dts \
+ include/dt-bindings/pinctrl/k3.h

@@ -1,0 +1,47 @@
+# 0 "src/arm64/overlays/BB-I2C2-MPU6050.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/overlays/BB-I2C2-MPU6050.dts"
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "include/dt-bindings/pinctrl/k3.h" 1
+# 10 "src/arm64/overlays/BB-I2C2-MPU6050.dts" 2
+# 1 "include/dt-bindings/gpio/gpio.h" 1
+# 11 "src/arm64/overlays/BB-I2C2-MPU6050.dts" 2
+# 1 "include/dt-bindings/interrupt-controller/irq.h" 1
+# 12 "src/arm64/overlays/BB-I2C2-MPU6050.dts" 2
+# 1 "include/dt-bindings/board/k3-j721e-bone-pins.h" 1
+# 13 "src/arm64/overlays/BB-I2C2-MPU6050.dts" 2
+
+
+
+
+&{/chosen} {
+ overlays {
+  BB-I2C2-MPU6050.kernel = "Tue Mar 26 15:40:53 2024";
+ };
+};
+
+&bone_i2c_2 {
+ status = "okay";
+
+ clock-frequency = <400000>;
+
+ #address-cells = <1>;
+ #size-cells = <0>;
+
+ imu@68 {
+  pinctrl-names = "default";
+  pinctrl-0 = <&P9_12_gpio_pin>;
+  compatible = "invensense,mpu6050";
+  reg = <0x68>;
+  interrupt-parent = <&main_gpio0>;
+  interrupts = <45 1>;
+ };
+};

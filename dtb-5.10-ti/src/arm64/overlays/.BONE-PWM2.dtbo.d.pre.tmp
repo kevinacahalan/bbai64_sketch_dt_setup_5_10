@@ -1,0 +1,1 @@
+BONE-PWM2.o: src/arm64/overlays/BONE-PWM2.dts

@@ -1,0 +1,50 @@
+# 0 "src/arm64/overlays/J721E-PRU-UIO-00A0.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/overlays/J721E-PRU-UIO-00A0.dts"
+/dts-v1/;
+/plugin/;
+
+# 1 "include/dt-bindings/interrupt-controller/arm-gic.h" 1
+# 9 "include/dt-bindings/interrupt-controller/arm-gic.h"
+# 1 "include/dt-bindings/interrupt-controller/irq.h" 1
+# 10 "include/dt-bindings/interrupt-controller/arm-gic.h" 2
+# 5 "src/arm64/overlays/J721E-PRU-UIO-00A0.dts" 2
+
+
+
+
+
+&{/chosen} {
+ overlays {
+  J721E-PRU-UIO-00A0.kernel = "Tue Mar 26 15:40:53 2024";
+ };
+};
+
+&icssg0 {
+ compatible = "ti,pruss-v2";
+ ti,pintc-offset = <0x20000>;
+ interrupts = <0 254 4>,
+       <0 255 4>,
+       <0 256 4>,
+       <0 257 4>,
+       <0 258 4>,
+       <0 259 4>,
+       <0 260 4>,
+       <0 261 4>;
+ pruss-instance = "pruss0";
+};
+
+&icssg1 {
+ compatible = "ti,pruss-v2";
+ ti,pintc-offset = <0x20000>;
+ interrupts = <0 262 4>,
+       <0 263 4>,
+       <0 264 4>,
+       <0 265 4>,
+       <0 266 4>,
+       <0 267 4>,
+       <0 268 4>,
+       <0 269 4>;
+ pruss-instance = "pruss1";
+};

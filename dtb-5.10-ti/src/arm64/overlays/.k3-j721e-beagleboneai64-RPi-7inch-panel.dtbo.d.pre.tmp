@@ -1,0 +1,5 @@
+k3-j721e-beagleboneai64-RPi-7inch-panel.o: \
+ src/arm64/overlays/k3-j721e-beagleboneai64-RPi-7inch-panel.dts \
+ include/dt-bindings/gpio/gpio.h \
+ include/dt-bindings/interrupt-controller/irq.h \
+ include/dt-bindings/pinctrl/k3.h

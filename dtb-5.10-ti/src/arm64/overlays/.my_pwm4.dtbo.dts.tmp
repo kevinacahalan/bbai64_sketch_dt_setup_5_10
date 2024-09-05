@@ -1,0 +1,35 @@
+# 0 "src/arm64/overlays/my_pwm4.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/overlays/my_pwm4.dts"
+
+
+
+
+
+/dts-v1/;
+/plugin/;
+
+# 1 "include/dt-bindings/pinctrl/k3.h" 1
+# 10 "src/arm64/overlays/my_pwm4.dts" 2
+# 1 "include/dt-bindings/board/k3-j721e-bone-pins.h" 1
+# 11 "src/arm64/overlays/my_pwm4.dts" 2
+# 1 "include/dt-bindings/soc/ti,sci_pm_domain.h" 1
+# 12 "src/arm64/overlays/my_pwm4.dts" 2
+
+
+
+
+&{/chosen} {
+ overlays {
+  my_pwm4.kernel = "Tue Mar 26 15:40:53 2024";
+ };
+};
+
+&bone_pwm_4 {
+    pinctrl-names = "default";
+ pinctrl-0 = <
+  &P9_25_pwm_pin
+ >;
+ status = "okay";
+};

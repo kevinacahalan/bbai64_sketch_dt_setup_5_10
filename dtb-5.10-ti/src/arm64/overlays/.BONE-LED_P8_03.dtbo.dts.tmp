@@ -1,0 +1,33 @@
+# 0 "src/arm64/overlays/BONE-LED_P8_03.dts"
+# 0 "<built-in>"
+# 0 "<command-line>"
+# 1 "src/arm64/overlays/BONE-LED_P8_03.dts"
+# 13 "src/arm64/overlays/BONE-LED_P8_03.dts"
+/dts-v1/;
+/plugin/;
+
+&{/chosen} {
+ overlays {
+  BONE-LED_P8_03 = "Tue Mar 26 15:40:53 2024";
+ };
+};
+
+
+
+
+
+&ocp {
+ P8_03_pinmux { pinctrl-0 = <&P8_03_gpio_pin>;};
+};
+
+
+
+
+
+&bone_led_P8_03 {
+    status = "okay";
+
+    label = "led_P8_03";
+    linux,default-trigger = "heartbeat";
+    default-state = "on";
+};

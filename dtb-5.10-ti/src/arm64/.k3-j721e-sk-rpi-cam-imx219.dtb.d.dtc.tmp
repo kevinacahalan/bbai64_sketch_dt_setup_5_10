@@ -1,0 +1,1 @@
+src/arm64/k3-j721e-sk-rpi-cam-imx219.dtb: src/arm64/.k3-j721e-sk-rpi-cam-imx219.dtb.dts.tmp

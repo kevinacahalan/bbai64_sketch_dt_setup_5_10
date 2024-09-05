@@ -1,0 +1,1 @@
+src/arm64/overlays/BONE-I2C3.dtbo: src/arm64/overlays/.BONE-I2C3.dtbo.dts.tmp

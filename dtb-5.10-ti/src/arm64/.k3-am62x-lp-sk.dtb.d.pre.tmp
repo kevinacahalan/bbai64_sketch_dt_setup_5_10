@@ -1,0 +1,10 @@
+k3-am62x-lp-sk.o: src/arm64/k3-am62x-lp-sk.dts \
+ include/dt-bindings/leds/common.h include/dt-bindings/gpio/gpio.h \
+ include/dt-bindings/net/ti-dp83867.h src/arm64/k3-am625.dtsi \
+ src/arm64/k3-am62.dtsi include/dt-bindings/interrupt-controller/irq.h \
+ include/dt-bindings/interrupt-controller/arm-gic.h \
+ include/dt-bindings/pinctrl/k3.h \
+ include/dt-bindings/soc/ti,sci_pm_domain.h \
+ src/arm64/k3-am62-thermal.dtsi include/dt-bindings/thermal/thermal.h \
+ src/arm64/k3-am62-main.dtsi src/arm64/k3-am62-mcu.dtsi \
+ src/arm64/k3-am62-wakeup.dtsi src/arm64/k3-am62x-sk-common.dtsi

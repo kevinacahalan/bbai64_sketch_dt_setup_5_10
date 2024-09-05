@@ -1,0 +1,4 @@
+BBAI64-CSI0-imx219.o: src/arm64/overlays/BBAI64-CSI0-imx219.dts \
+ include/dt-bindings/gpio/gpio.h \
+ include/dt-bindings/interrupt-controller/irq.h \
+ include/dt-bindings/pinctrl/k3.h
