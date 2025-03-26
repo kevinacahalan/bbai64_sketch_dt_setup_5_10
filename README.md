@@ -1,5 +1,28 @@
+# THERE IS NOW A WORKING 6.12 OVERLAY THAT DOES EVERYTHING THIS SKETCHY SETUP DOES!!!
 
-### Setup install
+### HERE IS A LINK TO IT!!!
+- https://github.com/kevinacahalan/BeagleBoneAI64_Heterogeneous_App_Example/blob/master/custom_overlays/our-custom-bbai64-overlay.dtso
+- https://github.com/kevinacahalan/BeagleBoneAI64_Heterogeneous_App_Example/blob/master/custom_overlays/our-custom-bbai64-overlay.dtso
+- https://github.com/kevinacahalan/BeagleBoneAI64_Heterogeneous_App_Example/blob/master/custom_overlays/our-custom-bbai64-overlay.dtso
+- https://github.com/kevinacahalan/BeagleBoneAI64_Heterogeneous_App_Example/blob/master/custom_overlays/our-custom-bbai64-overlay.dtso
+
+### Instructions on how to setup 6.12 overlay!!!
+https://github.com/kevinacahalan/BeagleBoneAI64_Heterogeneous_App_Example/tree/master?tab=readme-ov-file#device-tree-info
+
+
+#
+#
+#
+#
+#
+#
+#
+#
+#
+
+
+### Instructions to setup and install sucky trash 5.10 setup that you should not use:
+
 Your custom overlays should be placed in `./arm64/overlays`. The script `../scripts/setup_device_trees_deb12.sh`
 should take care of compile and install. You may then need to power cycle the board a few times.
 
